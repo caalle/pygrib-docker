@@ -7,8 +7,13 @@ RUN apt-get update && apt-get install -y \
   build-essential \
   libgrib-api-dev
 
-RUN git clone https://github.com/jswhit/pygrib.git pygrib
-COPY setup.cfg ./pygrib/setup.cfg
 RUN pip install numpy pyproj
 
+RUN git clone https://github.com/jswhit/pygrib.git pygrib && \
+  cd pygrib && git checkout tags/v2.0.2rel
+
+COPY setup.cfg ./pygrib/setup.cfg
+
 RUN cd pygrib && python setup.py build && python setup.py install
+
+CMD ["python"]
