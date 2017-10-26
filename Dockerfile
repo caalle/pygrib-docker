@@ -1,4 +1,4 @@
-FROM python:2.7.13
+FROM python:2.7.14-stretch
 
 RUN apt-get update && apt-get install -y \
   gcc \
